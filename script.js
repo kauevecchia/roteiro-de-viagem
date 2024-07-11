@@ -110,3 +110,16 @@ const formatador = (data) => {
   
   }
   criarDiasSelecao()
+
+  const criarHorasSelecao = () => {
+    let horasDisponiveis = ''
+  
+    for(let i = 6; i < 23; i++) {
+      horasDisponiveis += `<option value="${i}:00">${i}:00</option>`
+      horasDisponiveis += `<option value="${i}:30">${i}:30</option>`
+    }
+  
+    document.querySelector('select[name="hora"]')
+    .innerHTML = horasDisponiveis
+  }
+  criarHorasSelecao()
