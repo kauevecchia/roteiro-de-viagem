@@ -37,7 +37,10 @@ const formatador = (data) => {
   
   const criarItemDeAtividade = (atividade) => {
     
-    let input = '<input type="checkbox" '
+    let input = `<input 
+    onchange="concluirAtividade(event)"
+    value="${atividade.data}"
+    type="checkbox" `
     
     if(atividade.finalizada) {
       input += 'checked'
@@ -147,3 +150,18 @@ const formatador = (data) => {
     .innerHTML = horasDisponiveis
   }
   criarHorasSelecao()
+
+  const concluirAtividade = (event) => {
+    const input = event.target
+    const dataDesteInput = input.value
+  
+    const atividade = atividades.find((atividade) => {
+      return atividade.data == dataDesteInput
+    })
+  
+    if(!atividade) {
+      return 
+    }
+  
+    atividade.finalizada = !atividade.finalizada
+  }
