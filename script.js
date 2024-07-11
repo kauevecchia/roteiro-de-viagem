@@ -94,6 +94,17 @@ const formatador = (data) => {
   
     let diasSelecao = ''
   
+    for(let dia of dias) {
+          const formatar = formatador(dia)
+          const diaFormatado = `
+          ${formatar.dia.numerico} de
+          ${formatar.mes}
+          `
+          diasSelecao += `
+          <option value="${dia}">${diaFormatado}</option>
+          `
+      }
+  
     document.querySelector('select[name="dia"]')
     .innerHTML = diasSelecao
   
