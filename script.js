@@ -81,7 +81,31 @@ const formatador = (data) => {
   
   const salvarAtividade = (event) => {
     event.preventDefault()
-  }
+
+    const dadosDoFormulario = new FormData(event.target)
+
+    const nome = dadosDoFormulario.get('atividade')
+    const dia = dadosDoFormulario.get('dia')
+    const hora = dadosDoFormulario.get('hora')
+    const data = `${dia} ${hora}`
+
+    const novaAtividade = {
+      nome: nome,
+      data: data,
+      finalizada: false
+    }
+
+    const atividadeExiste = atividades.find((atividade) => {
+      return atividade.data == novaAtividade.data
+    })
+
+    if(atividadeExiste) {
+      return alert('Dia/Hora não disponível.')
+    }
+
+    atividades = [novaAtividade, ...atividades]
+    atualizarListaDeAtividades()
+    }
   
   criarDiasSelecao = () => {
     const dias = [
